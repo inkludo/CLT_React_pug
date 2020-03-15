@@ -19,14 +19,15 @@ export const FirebaseState = ({ children }) => {
         showLoader()
         const res = await axios.get(`${url}/data.json`)
 
-        //console.log('DATA: ', res.data)
-
         const payload = Object.keys(res.data).map(key => {
+
             return {
-                ...res.data[key],
-                id: key
+
+                ...res.data[key]
             }
         })
+
+        console.log(payload)
 
         dispatch({ type: FETCH_DATA, payload })
     }

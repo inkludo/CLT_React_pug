@@ -1,8 +1,9 @@
 import React, { Fragment, useContext, useEffect } from 'react'
 import { FirebaseContext } from '../context/firebase/firebaseContext'
 import { Loader } from '../components/Loader'
+import { TableData } from '../components/TableData'
 
-export const Home = () => {
+export const Classroom = () => {
 
 
     const { loading, data, fetchData } = useContext(FirebaseContext)
@@ -13,11 +14,13 @@ export const Home = () => {
     }, [])
 
 
+
+
     return (
         <Fragment>
 
             {loading ? <Loader /> :
-                <SomeComponent key={data.id} data={data} /> // need to add for ??
+                < TableData data={data} /> // need to add for ??
             }
 
         </Fragment>
