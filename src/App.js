@@ -1,22 +1,25 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { Classroom } from './pages/Classroom';
-import { Navbar } from './components/Navbar';
+
 import { FirebaseState } from './context/firebase/firebaseState';
+import Classroom from './containers/Classroom';
+import Layout from './hoc/Layout/Layout';
+import ItemDetails from './components/ItemDetails/ItemDetails';
 
 function App() {
   return (
-    <FirebaseState>
-      <BrowserRouter>
-        <Navbar />
-        <div className="container pt-4">
-          <Switch>
-            <Route path={"/"} exact component={Classroom} />
-          </Switch>
-        </div>
-      </BrowserRouter>
-    </FirebaseState>
+
+    <Layout>
+      <Switch>
+        {/* <Route path='/pc/:id' component={ItemDetails} /> */}
+        <Route path='/' component={Classroom} />
+      </Switch>
+    </Layout>
   );
 }
 
 export default App;
+
+// Classroom? => 32z/33z/37z ? => ItemList => DataItem => ItemDetails 
+// 32z/33z/37z ? => ItemList => DataItem => ItemDetails // 3 containers or 1 hoc?!
+
