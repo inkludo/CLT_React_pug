@@ -1,0 +1,19 @@
+.ClassroomList{
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+    flex-grow: 1;
+   height: 100vh;
+    
+    background: linear-gradient(90deg, #5041b2 0%, #7969e6 100%);
+}
+
+.ClassroomList h1 {
+    color: white;
+    margin-left: 10px;
+}
+
+.ClassroomListWrapper {
+    width: 600px;
+    
+}

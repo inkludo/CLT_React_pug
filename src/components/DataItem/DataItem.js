@@ -3,16 +3,32 @@ import styles from './DataItem.module.css'
 import { withRouter } from 'react-router-dom'
 
 const DataItem = props => {
-    const { PC, load } = props.data
+    const { data, title } = props
+    const check = (title === 'Classroom: '
+        ? <span>{title + data}</span>
+        : <span>{title + data.pc}</span>)
+
     return (
-        <li
-            onClick={() => props.history.push('/pc/' + props.data.id)} // need to id
-            className={styles.DataItem}
-        >
-            {`PC: ${PC} `}
-            <br />
-            <span>{`Load: ${load} %`}</span>
-        </li>
+        <>
+            {props.title === 'Classroom: '
+                ? <li
+                    onClick={() => props.history.push(`/classroom/${data}`)} // need to id
+                    className={styles.DataItem}
+                >
+                    {
+                        check
+                    }
+                </li>
+                : <li
+                    onClick={() => props.history.push(`/classroom/${data.auditorium}/pc/${data.auditorium + data.pc}`)}
+                    className={styles.DataItem}
+                >
+                    {
+                        check
+                    }
+                </li>
+            }
+        </>
     )
 }
 

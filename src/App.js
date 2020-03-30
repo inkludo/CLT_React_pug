@@ -1,18 +1,21 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 import { FirebaseState } from './context/firebase/firebaseState';
-import Classroom from './containers/Classroom';
 import Layout from './hoc/Layout/Layout';
-import ItemDetails from './components/ItemDetails/ItemDetails';
+import ItemDetails from './containers/ItemDetails/ItemDetails';
+import ClassroomList from './containers/ClassroomList/ClassroomList';
+import Classroom from './containers/Classroom/Classroom'
+
+
 
 function App() {
   return (
-
     <Layout>
       <Switch>
-        {/* <Route path='/pc/:id' component={ItemDetails} /> */}
-        <Route path='/' component={Classroom} />
+        <Route path='/classroom/:id/pc/:id' component={ItemDetails} />
+        <Route path='/classroom/:id' component={Classroom} />
+        <Route path='/' component={ClassroomList} />
       </Switch>
     </Layout>
   );
@@ -20,6 +23,4 @@ function App() {
 
 export default App;
 
-// Classroom? => 32z/33z/37z ? => ItemList => DataItem => ItemDetails 
-// 32z/33z/37z ? => ItemList => DataItem => ItemDetails // 3 containers or 1 hoc?!
-
+//Todo: About page and charts

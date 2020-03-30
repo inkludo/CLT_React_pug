@@ -21,6 +21,7 @@ class Layout extends Component {
 
 
     render() {
+        console.log('Layout', this.props.children)
 
         return (
             <div className={styles.Layout}>

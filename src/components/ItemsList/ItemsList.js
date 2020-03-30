@@ -3,15 +3,14 @@ import styles from './ItemsList.module.css'
 import DataItem from '../DataItem/DataItem'
 
 const ItemsList = props => {
-    console.log(props.data)
     return (
-
         <ul className={styles.ItemsList}>
-
-            {props.data["z33"].map((data, index) => {
+            {props.data.map((item, index) => {
+                console.log(props)
                 return (
                     <DataItem
-                        data={data}
+                        data={item}
+                        title={props.title}
                         key={index}
                     />
                 )

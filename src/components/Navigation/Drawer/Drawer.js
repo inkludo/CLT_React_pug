@@ -5,9 +5,8 @@ import { NavLink } from 'react-router-dom'
 
 
 const links = [
-    { to: '/32z', label: '32 З', exact: true },
-    { to: '/33z', label: '33 З', exact: false },
-    { to: '/37z', label: '37 З', exact: false }
+    { to: '/', label: 'List', exact: true },
+    { to: '/about', label: 'About', exact: false }
 ]
 
 class Drawer extends Component {
