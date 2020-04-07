@@ -1,11 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom'
-
-import { FirebaseState } from './context/firebase/firebaseState';
 import Layout from './hoc/Layout/Layout';
 import ItemDetails from './containers/ItemDetails/ItemDetails';
-import ClassroomList from './containers/ClassroomList/ClassroomList';
-import Classroom from './containers/Classroom/Classroom'
+import { Classroom } from './containers/Classroom/Classroom';
+import { ClassroomList } from './containers/ClassroomList/ClassroomList';
 
 
 

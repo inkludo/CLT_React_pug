@@ -1,10 +1,13 @@
-import React, { Component } from 'react'
-import styles from './Classroom.module.css'
+import React, { useState, useEffect, useCallback } from 'react'
+import { useHttp } from '../../hooks/http.hook'
+import { Loader } from '../../components/Loader/Loader'
 import ItemsList from '../../components/ItemsList/ItemsList'
 
-class Classroom extends Component {
+import styles from './Classroom.module.css'
 
-    state = {
+export const Classroom = props => {
+
+    const state = {
         data: [
             {
                 auditorium: '39',
@@ -17,24 +20,44 @@ class Classroom extends Component {
         ]
     }
 
+    const [data, setData] = useState(null)
+
+    const { request, loading } = useHttp()
+
+    const fetchComputers = useCallback(async (id) => {
+        try {
+            //const fetched = await request(`localhost/getComputer`, 'GET', { k: { a: id } })
+            const fetched = [...state.data]
+            setData(fetched)
+        } catch (e) { console.log(e) }
+    }, [request])
 
 
+    useEffect(() => {
+        fetchComputers(props.match.params.id)
+    }, [fetchComputers])
 
-    render() {
 
-        console.log(this.props.match.params)
-        return (
-            <div className={styles.Classroom}>
-
-                <div className={styles.ClassroomWrapper}>
-                    <h1>Classroom № {this.props.match.params.id} </h1>
-                    <ItemsList
-                        data={this.state.data}
-                        title={'PC № '}
-                    />
-                </div>
-            </div>)
+    if (loading) {
+        return <Loader />
     }
-}
 
-export default Classroom
+
+    return (
+        <>
+            {!loading
+                &&
+                < div className={styles.Classroom}>
+                    <div className={styles.ClassroomWrapper}>
+                        <h1>Classroom № {props.match.params.id} </h1>
+                        <ItemsList
+                            data={data}
+                            title={'PC № '}
+                        />
+                    </div>
+                </div>
+            }
+        </>
+    )
+
+}
