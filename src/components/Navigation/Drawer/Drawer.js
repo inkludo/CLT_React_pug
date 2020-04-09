@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
 
 const links = [
     { to: '/', label: 'List', exact: true },
-    { to: '/about', label: 'About', exact: false }
+    { to: '/help', label: 'Help', exact: true }
 ]
 
 class Drawer extends Component {
@@ -14,7 +14,6 @@ class Drawer extends Component {
     clickHandler = () => {
         this.props.onClose()
     }
-
 
 
 

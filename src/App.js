@@ -4,6 +4,7 @@ import Layout from './hoc/Layout/Layout';
 import { Classroom } from './containers/Classroom/Classroom';
 import { ClassroomList } from './containers/ClassroomList/ClassroomList';
 import { ItemDetails } from './containers/ItemDetails/ItemDetails';
+import { HelpPage } from './components/HelpPage/HelpPage';
 
 
 
@@ -13,12 +14,12 @@ function App() {
       <Switch>
         <Route path='/classroom/:id/pc/:id' component={ItemDetails} />
         <Route path='/classroom/:id' component={Classroom} />
+        <Route path='/help' component={HelpPage} />
         <Route path='/' component={ClassroomList} />
       </Switch>
     </Layout>
   );
 }
 
-export default App;
 
-//Todo: About page and charts
+export default App;
