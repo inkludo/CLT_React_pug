@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import Layout from './hoc/Layout/Layout';
 import { Classroom } from './containers/Classroom/Classroom';
 import { ClassroomList } from './containers/ClassroomList/ClassroomList';
-import { ItemDetails } from './containers/ItemDetails/ItemDetails';
+import {ItemDetails}  from './containers/ItemDetails/ItemDetails';
 import { HelpPage } from './components/HelpPage/HelpPage';
 
 

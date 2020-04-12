@@ -17,8 +17,10 @@ export const ClassroomList = () => {
 
     const fetchClassroomList = useCallback(async (state) => {
         try {
-            //const fetched = await request(`localhost/getComputer`, 'GET', null)
-            const fetched = [...state.classroom]
+            //const fetched = await request(`localhost:8000/getComputer`, 'GET', null)
+
+            
+            const fetched = await [...state.classroom]
             setClassroom(fetched)
         } catch (e) { console.log(e) }
     }, [request])

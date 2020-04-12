@@ -1,59 +1,98 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { useHttp } from '../../hooks/http.hook'
-import { Loader } from '../../components/Loader/Loader'
-import { Chart } from '../../components/Chart/Chart'
+import React, { useState, useEffect, useCallback } from "react";
+import { useHttp } from "../../hooks/http.hook";
+import { Loader } from "../../components/Loader/Loader";
+import Chart from "react-apexcharts";
+import { MeanData } from "../../components/MeanData/MeanData";
+import {getData, someData, meanFunc, initialState} from '../../dataHelper/dataHelper'
+import "./ItemDetails.css";
 
 export const ItemDetails = (props) => {
+  
 
+  const [data, setData] = useState(initialState);
+  const [meanData, setMeanData] = useState(null);
 
+  const { request, loading } = useHttp();
 
-    const someData = [{ "t": 1585484661.9659426, "c": 88.56, "r": 26.56, "d": [{ "n": "some_disk_name", "p": 36.12 }] }, { "t": 1585484661.9659426, "c": 89.33, "r": 4.84, "d": [{ "n": "some_disk_name", "p": 36.68 }] }, { "t": 1585484661.9659426, "c": 95.27, "r": 61.38, "d": [{ "n": "some_disk_name", "p": 32.0 }] }, { "t": 1585484661.9659426, "c": 42.63, "r": 93.4, "d": [{ "n": "some_disk_name", "p": 2.29 }] }, { "t": 1585484661.9659426, "c": 36.89, "r": 65.04, "d": [{ "n": "some_disk_name", "p": 87.65 }] }, { "t": 1585484661.9659426, "c": 24.52, "r": 18.85, "d": [{ "n": "some_disk_name", "p": 76.18 }] }, { "t": 1585484661.9659426, "c": 66.96, "r": 33.61, "d": [{ "n": "some_disk_name", "p": 18.01 }] }, { "t": 1585484661.9659426, "c": 9.76, "r": 32.52, "d": [{ "n": "some_disk_name", "p": 25.57 }] }, { "t": 1585484661.9659426, "c": 35.7, "r": 46.14, "d": [{ "n": "some_disk_name", "p": 32.06 }] }, { "t": 1585484661.9659426, "c": 72.51, "r": 42.58, "d": [{ "n": "some_disk_name", "p": 24.63 }] }]
+  const fetchPcInfo = useCallback(
+    async (data) => {
+      try {
+        const time = [];
+        const cpu = [];
+        const ram = [];
+        const disk = [];
 
-    const state = {
-        time: [],
-        cpu: [],
-        ram: [],
-        disk: []
-    }
+        //const fetched = await request(`localhost/getComputer`, 'GET', { k: { a: id } })
 
+        const fetched = await { ...data };
+        getData(someData, time, cpu, ram, disk);
+        const pushNewData  = fetched.series.map((item) => {
+          const { name } = item;
+          switch (name) {
+            case "cpu":
+              item.data = [...cpu];
+              break;
+            case "ram":
+              item.data = [...ram];
+              break;
+            case "disk":
+              item.data = [...disk];
+              break;
+            default:
+              return;
+          }
 
+          return item;
+        });
 
+        setMeanData(meanFunc(time, cpu, ram, disk))
 
+        fetched.series = [...pushNewData];
 
-    const [data, setData] = useState(null)
+        setData(fetched);
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    [request]
+  );
 
-    const { request, loading } = useHttp()
+  useEffect(() => {
+    fetchPcInfo(data);
+  }, [fetchPcInfo]);
 
+  if (loading) {
+    return <Loader />;
+  }
 
-    const fetchPcInfo = useCallback(async (state) => {
-        try {
-            //const fetched = await request(`localhost/getComputer`, 'GET', { k: { a: id } })
-            const fetched = [someData]
-            //this place for structuring data 
-            setData(fetched)
-        } catch (e) { console.log(e) }
-    }, [request])
+  if (data === null) {
+    return <Loader />;
+  }
 
+  console.log(meanData);
 
-    useEffect(() => {
-        fetchPcInfo(state)
-    }, [fetchPcInfo])
+  return (
+    <>
+      {!loading && (
+        <>
+          <div className="containerData">
+            <h4>
+              Classroom № {props.match.params.id.slice(0, 2)} PC №{" "}
+              {props.match.params.id.slice(2, 4)}
+            </h4>
 
-
-    if (loading) {
-        return <Loader />
-    }
-
-
-    return (
-        <div style={{ textAlign: 'center' }}>
-            <h1>Hello from ItemDetails</h1>
-            <h2>ID: {props.match.params.id}</h2>
-            <Chart />
-        </div>
-    )
-
-}
-
-
-//https://semiotic.nteract.io/guides
+            <Chart
+              className="chart"
+              options={data.options}
+              series={data.series}
+              type="area"
+              height={350}
+              width={"50%"}
+            />
+            <MeanData/>
+          </div>
+        </>
+      )}
+    </>
+  );
+};

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { useHttp } from '../../hooks/http.hook'
 import { Loader } from '../../components/Loader/Loader'
 import ItemsList from '../../components/ItemsList/ItemsList'
-
+import axios from 'axios'
 import styles from './Classroom.module.css'
 
 export const Classroom = props => {
@@ -26,8 +26,10 @@ export const Classroom = props => {
 
     const fetchComputers = useCallback(async (id) => {
         try {
-            //const fetched = await request(`localhost/getComputer`, 'GET', { k: { a: id } })
-            const fetched = [...state.data]
+           // const fetched = await request(`localhost:8000/GetComputers`, 'POST', { a: id } )
+           const fetched = await [...state.data]
+           console.log();
+           
             setData(fetched)
         } catch (e) { console.log(e) }
     }, [request])

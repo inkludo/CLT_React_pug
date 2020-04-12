@@ -1,0 +1,16 @@
+.containerData {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    background: linear-gradient(270deg, #cef2fa 0%, #59bfef 100%);
+}
+
+h4{
+    margin-left: 40%;
+    color: white;
+    margin-top: 7vh;
+}
+
+.chart {
+    margin-left: 30%;
+}

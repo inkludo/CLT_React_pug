@@ -46,7 +46,7 @@ class Drawer extends Component {
         return (
             <>
                 <nav className={stl.join(' ')}>
-                    <ul>
+                    <ul style={{marginTop: '10px'}}>
                         {this.renderLinks()}
                     </ul>
                 </nav>
