@@ -1,11 +1,26 @@
-.customContainer{
-    width: 100%;
-    background: linear-gradient(90deg, #5041b2 0%, #7969e6 100%);
+.customContainer {
+  width: 100%;
+  background: linear-gradient(270deg, #84bcc8 0%, #59bfef 100%);
 }
 
-.container{
-    background: white !important;
-    margin-top: 2vw;
-    
-}
 
+.container {
+  background: white !important;
+  margin-top: 2vw;
+}
+.classRoomList {
+  width: 100%;
+  overflow: hidden;
+}
+.img1 {
+  width: 70%;
+}
+.help-item {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  white-space: pre-line;
+}
+.alert {
+  margin-top: 15px;
+}

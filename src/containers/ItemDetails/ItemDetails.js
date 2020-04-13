@@ -3,12 +3,15 @@ import { useHttp } from "../../hooks/http.hook";
 import { Loader } from "../../components/Loader/Loader";
 import Chart from "react-apexcharts";
 import { MeanData } from "../../components/MeanData/MeanData";
-import {getData, someData, meanFunc, initialState} from '../../dataHelper/dataHelper'
+import {
+  getData,
+  someData,
+  meanFunc,
+  initialState,
+} from "../../dataHelper/dataHelper";
 import "./ItemDetails.css";
 
 export const ItemDetails = (props) => {
-  
-
   const [data, setData] = useState(initialState);
   const [meanData, setMeanData] = useState(null);
 
@@ -26,7 +29,7 @@ export const ItemDetails = (props) => {
 
         const fetched = await { ...data };
         getData(someData, time, cpu, ram, disk);
-        const pushNewData  = fetched.series.map((item) => {
+        const pushNewData = fetched.series.map((item) => {
           const { name } = item;
           switch (name) {
             case "cpu":
@@ -45,7 +48,7 @@ export const ItemDetails = (props) => {
           return item;
         });
 
-        setMeanData(meanFunc(time, cpu, ram, disk))
+        setMeanData(meanFunc(time, cpu, ram, disk));
 
         fetched.series = [...pushNewData];
 
@@ -69,7 +72,6 @@ export const ItemDetails = (props) => {
     return <Loader />;
   }
 
-  console.log(meanData);
 
   return (
     <>
@@ -81,15 +83,17 @@ export const ItemDetails = (props) => {
               {props.match.params.id.slice(2, 4)}
             </h4>
 
-            <Chart
-              className="chart"
-              options={data.options}
-              series={data.series}
-              type="area"
-              height={350}
-              width={"50%"}
-            />
-            <MeanData/>
+            <div style={{ width: "70vw" }}>
+              <Chart
+                className="chart"
+                options={data.options}
+                series={data.series}
+                type="area"
+                height={400}
+              />
+            </div>
+           
+            <MeanData data={meanData} />
           </div>
         </>
       )}

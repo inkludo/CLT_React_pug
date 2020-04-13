@@ -1,60 +1,49 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { useHttp } from '../../hooks/http.hook'
-import { Loader } from '../../components/Loader/Loader'
-import ItemsList from '../../components/ItemsList/ItemsList'
-import styles from './ClassroomList.module.css'
-
+import React, { useState, useEffect, useCallback } from "react";
+import { useHttp } from "../../hooks/http.hook";
+import { Loader } from "../../components/Loader/Loader";
+import ItemsList from "../../components/ItemsList/ItemsList";
+import styles from "./ClassroomList.module.css";
 
 export const ClassroomList = () => {
+  
 
-    const state = {
-        classroom: ['39', '32', '33']
+  const [classroom, setClassroom] = useState(null);
+
+  const { request, loading } = useHttp();
+
+  const fetchClassroomList = useCallback(async () => {
+    try {
+      const fetched = await request(
+        `http://localhost:8000/GetAuditoriums`,
+        "GET",
+        null
+      );
+      console.log(fetched);
+
+      setClassroom(fetched.d);
+    } catch (e) {
+      console.log(e);
     }
+  }, [request]);
 
-    const [classroom, setClassroom] = useState(null)
-
-    const { request, loading } = useHttp()
-
-    const fetchClassroomList = useCallback(async (state) => {
-        try {
-            //const fetched = await request(`localhost:8000/getComputer`, 'GET', null)
-
-            
-            const fetched = await [...state.classroom]
-            setClassroom(fetched)
-        } catch (e) { console.log(e) }
-    }, [request])
+  useEffect(() => {
+    fetchClassroomList();
+  }, [fetchClassroomList]);
 
 
-    useEffect(() => {
-        fetchClassroomList(state)
-    }, [fetchClassroomList])
 
-
-    if (loading) {
-        return <Loader />
-    }
-
-    if (classroom === null) {
-        return <Loader />
-    }
-
-    return (
-
-        <>
-            {!loading
-                &&
-                <div className={styles.ClassroomList}>
-                    <div className={styles.ClassroomListWrapper}>
-                        <h1>Classroom List</h1>
-                        <ItemsList
-                            data={classroom}
-                            title={'Classroom: '} />
-                    </div>
-                </div>
-            }
-        </>
-    )
-
-
-}
+  return (
+    <>
+    <div className={styles.ClassroomList}>
+    
+      {loading && <Loader/>}
+      {!loading && (
+          <div className={styles.ClassroomListWrapper}>
+           <h1>Classroom List</h1>
+            <ItemsList data={classroom} title={"Classroom: "} />
+          </div>
+      )}
+       </div>
+    </>
+  );
+};

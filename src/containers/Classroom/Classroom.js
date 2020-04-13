@@ -17,6 +17,7 @@ export const Classroom = props => {
                 auditorium: '39',
                 pc: 2,
             },
+
         ]
     }
 
@@ -26,9 +27,16 @@ export const Classroom = props => {
 
     const fetchComputers = useCallback(async (id) => {
         try {
-           // const fetched = await request(`localhost:8000/GetComputers`, 'POST', { a: id } )
+
+            const fetched1 = await axios.post("http://localhost:8000/GetComputers", {
+            a:200
+          })
+          .then((response) => console.log(response))
+          .catch((e) => console.log(e));
+            //const fetched1 = await request(`https://192.168.0.102:8000/GetComputers`, 'POST', { a: id } )
            const fetched = await [...state.data]
-           console.log();
+           //console.log(fetched1);
+           console.log(fetched1);
            
             setData(fetched)
         } catch (e) { console.log(e) }

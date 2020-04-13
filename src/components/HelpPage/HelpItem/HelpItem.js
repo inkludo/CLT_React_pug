@@ -1,119 +1,68 @@
 import React from "react";
-
+import img1 from "../img/ClassroomList.png";
+import img2 from "../img/class_room.png";
+import img3 from "../img/ps_graph.png";
 export const HelpItem = () => {
   return (
     <div className="help-items">
       <div className="help-contents mb-5">
-        <h2 className="mb-3">Contents</h2>
+        <h2 className="mb-3">Content</h2>
         <ol className="pl-3">
           <li>
-            <a href="#lorem_ipsum">Lorem Ipsum</a>
+            <a href="#classList">Classroom List</a>
           </li>
           <li>
-            <a href="#dolor_sit_amet">Dolor sit amet</a>
+            <a href="#classroom">Classroom</a>
           </li>
           <li>
-            <a href="#consectetur_adipisicing_elit">
-              Consectetur adipisicing elit
-            </a>
-          </li>
-          <li>
-            <a href="#culpa_eum_iure">Culpa eum iure</a>
+            <a href="#pc_chart">PC chart and stats</a>
           </li>
         </ol>
       </div>
-      <div className="help-item mb-5 pb-5 border-bottom" id="lorem_ipsum">
-        <h2>Lorem Ipsum</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. At velit
-          error temporibus. Harum, deserunt? Porro id, rem quia qui explicabo
-          fugit? Cum dolorum placeat aspernatur tempora tenetur molestiae
-          praesentium consequatur iste assumenda, repudiandae sint velit
-          possimus perspiciatis veritatis ipsa, quos!
-        </p>
+      <div className="help-item mb-5 pb-5 border-bottom" id="classList">
+        <h2>Classroom List</h2>
+        <div className="classRoomList">
+          <img src={img1} alt="ClassroomList" className="img1" />
+        </div>
+
         <div className="alert alert-primary" role="alert">
-          Ducimus placeat nobis perferendis, dignissimos laborum alias adipisci,
-          quia, est ad atque quasi possimus fuga earum veritatis sint impedit!
-          Id sed distinctio accusantium aut quasi ab eius sint amet dignissimos
-          alias et deleniti voluptatibus non dolor maiores voluptatem, vero ut.
+          On this image you can see main page of this application. 1- "burger"
+          menu that consists of two components: List and Help. List is a link to
+          the main page. Help is a link to the Helper page, where you can find
+          solution of your problem in this application.
         </div>
       </div>
-      <div className="help-item mb-5 pb-5 border-bottom" id="dolor_sit_amet">
-        <h2 className="mb-3">Dolor sit amet</h2>
-        <dl className="row">
-          <dt className="col-sm-3">Description lists</dt>
-          <dd className="col-sm-9">
-            A description list is perfect for defining terms.
-          </dd>
+      <div className="help-item mb-5 pb-5 border-bottom" id="classroom">
+        <h2>Classroom</h2>
+        <div className="classRoomList">
+          <img src={img2} alt="ClassroomList" className="img1" />
+        </div>
 
-          <dt className="col-sm-3">Euismod</dt>
-          <dd className="col-sm-9">
-            <p>
-              Vestibulum id ligula porta felis euismod semper eget lacinia odio
-              sem nec elit.
-            </p>
-            <p>Donec id elit non mi porta gravida at eget metus.</p>
-          </dd>
-
-          <dt className="col-sm-3">Malesuada porta</dt>
-          <dd className="col-sm-9">
-            Etiam porta sem malesuada magna mollis euismod.
-          </dd>
-
-          <dt className="col-sm-3 text-truncate">
-            Truncated term is truncated
-          </dt>
-          <dd className="col-sm-9">
-            Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
-            nibh, ut fermentum massa justo sit amet risus.
-          </dd>
-        </dl>
+        <div className="alert alert-primary" role="alert">
+          On this image you can see list of computers of your selected auditory.
+          1 - auditory number. 2 - list of computers in this auditory.
+        </div>
       </div>
-      <div
-        className="help-item mb-5 pb-5 border-bottom"
-        id="consectetur_adipisicing_elit"
-      >
-        <h2 className="mb-3">Consectetur adipisicing elit</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa eum
-          iure, non nobis! Veniam iusto eveniet accusantium distinctio
-          asperiores repudiandae id ea expedita facere! Dignissimos, odio?
-          Itaque vitae deleniti id animi magni minima perspiciatis aliquid
-          atque, placeat a, cupiditate accusantium possimus quaerat adipisci
-          nulla. Unde minus exercitationem consequuntur delectus perferendis
-          incidunt officiis, quas similique nemo adipisci reiciendis fugit dolor
-          itaque. Ducimus placeat nobis perferendis, dignissimos laborum alias
-          adipisci, quia, est ad atque quasi possimus fuga earum veritatis sint
-          impedit! Id sed distinctio accusantium aut quasi ab eius sint amet
-          dignissimos alias et deleniti voluptatibus non dolor maiores
-          voluptatem, vero ut.
-        </p>
-        <blockquote className="blockquote border p-4 mt-3 shadow p-3 bg-white rounded">
-          Ducimus placeat nobis perferendis, dignissimos laborum alias adipisci,
-          quia, est ad atque quasi possimus fuga earum veritatis sint impedit!
-          Id sed distinctio accusantium aut quasi ab eius sint amet dignissimos
-          alias et deleniti voluptatibus non dolor maiores voluptatem, vero ut.
-        </blockquote>
+      <div className="help-item mb-5 pb-5 border-bottom" id="pc_chart">
+        <h2>PC chart and stats</h2>
+        <div className="classRoomList">
+          <img src={img3} alt="ClassroomList" className="img1" />
+        </div>
+
+        <div className="alert alert-primary" role="alert">
+          On this image you can see statistics of selected computer, mean value
+          of CPU, RAM, DISK, and start time tracking performance. 1 - chart with
+          system information of selected computer. 2 - list of mean statistics
+        </div>
       </div>
-      <div className="help-item mb-5 pb-5 border-bottom" id="culpa_eum_iure">
-        <h2 className="mb-3">Culpa eum iure</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa eum
-          iure, non nobis! Veniam iusto eveniet accusantium distinctio
-          asperiores repudiandae id ea expedita facere! Dignissimos, odio?
-          Itaque vitae deleniti id animi magni minima perspiciatis aliquid
-          atque, placeat a, cupiditate accusantium possimus quaerat adipisci
-          nulla. Unde minus exercitationem consequuntur delectus perferendis
-          incidunt officiis, quas similique nemo adipisci reiciendis fugit dolor
-          itaque.
-        </p>
+
+      {/* <div className="help-item mb-5 pb-5 border-bottom" id="culpa_eum_iure">
+        <h2 className="mb-3">Other problems</h2>
+
         <div className="alert alert-warning" role="alert">
-          Ducimus placeat nobis perferendis, dignissimos laborum alias adipisci,
-          quia, est ad atque quasi possimus fuga earum veritatis sint impedit!
-          Id sed distinctio accusantium aut quasi ab eius sint amet dignissimos
-          alias et deleniti voluptatibus non dolor maiores voluptatem, vero ut.
+         
         </div>
-      </div>
+      </div> */}
     </div>
   );
-}
+};
