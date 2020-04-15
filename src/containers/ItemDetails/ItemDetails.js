@@ -29,7 +29,7 @@ export const ItemDetails = (props) => {
 
         const fetched = await { ...data };
         getData(someData, time, cpu, ram, disk);
-        const pushNewData = fetched.series.map((item) => {
+        const pushNewData =  fetched.series.map((item) => {
           const { name } = item;
           switch (name) {
             case "cpu":
@@ -68,21 +68,15 @@ export const ItemDetails = (props) => {
     return <Loader />;
   }
 
-  if (data === null) {
-    return <Loader />;
-  }
-
-
   return (
     <>
-      {!loading && (
-        <>
-          <div className="containerData">
-            <h4>
-              Classroom № {props.match.params.id.slice(0, 2)} PC №{" "}
-              {props.match.params.id.slice(2, 4)}
-            </h4>
-
+      <div className="containerData">
+        <h4>
+          Classroom № {props.match.params.id.slice(0, 2)} PC №{" "}
+          {props.match.params.id.slice(2, 4)}
+        </h4>
+        {!loading && (
+          <>
             <div style={{ width: "70vw" }}>
               <Chart
                 className="chart"
@@ -92,11 +86,10 @@ export const ItemDetails = (props) => {
                 height={400}
               />
             </div>
-           
             <MeanData data={meanData} />
-          </div>
-        </>
-      )}
+          </>
+        )}
+      </div>
     </>
   );
 };

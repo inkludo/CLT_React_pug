@@ -1,10 +1,10 @@
-import moment from 'moment'
+import moment from "moment";
 
 export const meanFunc = (time, cpu, ram, disk) => {
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
   const meanReduce = (item) => Math.trunc(item.reduce(reducer) / item.length);
-  const timeStart = moment.unix(time[0]).format('YYYY/MM/DD HH:mm:ss');
-  const timeEnd = moment.unix(1586802291).format('YYYY/MM/DD HH:mm:ss');
+  const timeStart = moment.unix(time[0]).format("YYYY/MM/DD HH:mm:ss");
+  const timeEnd = moment.unix(1586802291).format("YYYY/MM/DD HH:mm:ss");
   const duration = moment(timeStart).from(timeEnd, true);
 
   return {
@@ -18,7 +18,8 @@ export const meanFunc = (time, cpu, ram, disk) => {
 };
 
 export const getData = (data, time, cpu, ram, disk) => {
-  data.forEach((items) => Object.keys(items).map((key) => {
+  data.forEach((items) =>
+    Object.keys(items).map((key) => {
       switch (key) {
         case "t":
           time.push(items[key]);
@@ -134,15 +135,15 @@ export const initialState = {
       type: "datetime",
       categories: [
         "2018-09-19T00:00:00.000Z",
+        "2018-09-19T00:15:00.000Z",
+        "2018-09-19T00:30:00.000Z",
+        "2018-09-19T00:45:00.000Z",
+        "2018-09-19T01:00:00.000Z",
+        "2018-09-19T01:15:00.000Z",
         "2018-09-19T01:30:00.000Z",
-        "2018-09-19T02:30:00.000Z",
-        "2018-09-19T03:30:00.000Z",
-        "2018-09-19T04:30:00.000Z",
-        "2018-09-19T05:30:00.000Z",
-        "2018-09-19T06:30:00.000Z",
-        "2018-09-19T07:30:00.000Z",
-        "2018-09-19T08:30:00.000Z",
-        "2018-09-19T09:30:00.000Z",
+        "2018-09-19T01:45:00.000Z",
+        "2018-09-19T02:00:00.000Z",
+        "2018-09-19T02:15:00.000Z",
       ],
     },
     tooltip: {

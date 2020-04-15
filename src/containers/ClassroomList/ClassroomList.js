@@ -1,15 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useHttp } from "../../hooks/http.hook";
-import { Loader } from "../../components/Loader/Loader";
 import ItemsList from "../../components/ItemsList/ItemsList";
 import styles from "./ClassroomList.module.css";
 
 export const ClassroomList = () => {
-  
-
   const [classroom, setClassroom] = useState(null);
 
-  const { request, loading } = useHttp();
+  const { request} = useHttp();
 
   const fetchClassroomList = useCallback(async () => {
     try {
@@ -31,19 +28,14 @@ export const ClassroomList = () => {
   }, [fetchClassroomList]);
 
 
-
   return (
     <>
-    <div className={styles.ClassroomList}>
-    
-      {loading && <Loader/>}
-      {!loading && (
-          <div className={styles.ClassroomListWrapper}>
-           <h1>Classroom List</h1>
-            <ItemsList data={classroom} title={"Classroom: "} />
-          </div>
-      )}
-       </div>
+      <div className={styles.ClassroomList}>
+        <div className={styles.ClassroomListWrapper}>
+          <h1>Classroom List</h1>
+          <ItemsList data={classroom} title={"Classroom: "} />
+        </div>
+      </div>
     </>
   );
 };
