@@ -20,7 +20,7 @@ const DataItem = props => {
                     }
                 </li>
                 : <li
-                    onClick={() => props.history.push(`/classroom/${data.a}/pc/${data.a + data.n}`)}
+                    onClick={() => props.history.push(`/classroom/${data.a}/pc/${'a='+ data.a + 'n=' + data.n}`)}
                     className={styles.DataItem}
                 >
                     {

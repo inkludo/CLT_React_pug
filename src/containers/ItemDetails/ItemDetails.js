@@ -17,21 +17,20 @@ export const ItemDetails = (props) => {
 
   const { request, loading } = useHttp();
 
+  const parseKey = props.match.params.id.match(/a=(\d+)n=(\d+)/);
+
   const fetchPcInfo = useCallback(
-    async (data) => {
+    async (data, parseKey) => {
       try {
         const time = [];
         const cpu = [];
         const ram = [];
         const disk = [];
 
-        const id = props.match.params.id.slice(2, 4)
-        const auditorium = props.match.params.id.slice(0, 2)
-
         const fetched1 = await request(
           `http://localhost:8000/GetComputer`,
           "POST",
-          { d: { n: id, a: auditorium } }
+          { d: { n: parseKey[1], a: parseKey[2] } }
         );
         console.log(fetched1);
 
@@ -50,7 +49,7 @@ export const ItemDetails = (props) => {
               item.data = [...disk];
               break;
             default:
-              return;
+              return ;
           }
 
           return item;
@@ -69,15 +68,15 @@ export const ItemDetails = (props) => {
   );
 
   useEffect(() => {
-    fetchPcInfo(data);
+    fetchPcInfo(data, parseKey);
   }, [fetchPcInfo]);
+
 
   return (
     <>
       <div className="containerData">
         <h4>
-          Classroom № {props.match.params.id.slice(0, 2)} PC №{" "}
-          {props.match.params.id.slice(2, 4)}
+          Classroom № {parseKey[1]} PC № {parseKey[2]}
         </h4>
         {loading ? (
           <Loader />
