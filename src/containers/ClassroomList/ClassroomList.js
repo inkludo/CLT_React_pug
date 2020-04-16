@@ -15,7 +15,7 @@ export const ClassroomList = () => {
         "GET",
         null
       );
-      console.log(fetched);
+      console.log(fetched.d);
 
       setClassroom(fetched.d);
     } catch (e) {

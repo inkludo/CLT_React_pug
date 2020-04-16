@@ -20,11 +20,13 @@ const DataItem = props => {
                     }
                 </li>
                 : <li
-                    onClick={() => props.history.push(`/classroom/${data.auditorium}/pc/${data.auditorium + data.pc}`)}
+                    onClick={() => props.history.push(`/classroom/${data.a}/pc/${data.a + data.n}`)}
                     className={styles.DataItem}
                 >
                     {
-                        check
+                        (title === 'Classroom: '
+                        ? <span>{title + data}</span>
+                        : <span>{title + data.n}</span>)
                     }
                 </li>
             }

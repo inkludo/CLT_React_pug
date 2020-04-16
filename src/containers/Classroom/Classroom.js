@@ -12,10 +12,13 @@ export const Classroom = (props) => {
   const fetchComputers = useCallback(async (id) => {
     try {
       const fetched = await request(
-        "http://localhost:8000/GetComputers",
+        "http://localhost:8000/GetKeysByAuditorium",
         "POST",
-        { d: { a: id } }
+        { "d": { "a": id } }
       );
+
+      console.log(fetched);
+      
       setData(fetched.d);
     } catch (e) {
       console.log(e);

@@ -25,11 +25,19 @@ export const ItemDetails = (props) => {
         const ram = [];
         const disk = [];
 
-        //const fetched = await request(`localhost/getComputer`, 'GET', { k: { a: id } })
+        const id = props.match.params.id.slice(2, 4)
+        const auditorium = props.match.params.id.slice(0, 2)
+
+        const fetched1 = await request(
+          `http://localhost:8000/GetComputer`,
+          "POST",
+          { d: { n: id, a: auditorium } }
+        );
+        console.log(fetched1);
 
         const fetched = await { ...data };
         getData(someData, time, cpu, ram, disk);
-        const pushNewData =  fetched.series.map((item) => {
+        const pushNewData = fetched.series.map((item) => {
           const { name } = item;
           switch (name) {
             case "cpu":
@@ -64,10 +72,6 @@ export const ItemDetails = (props) => {
     fetchPcInfo(data);
   }, [fetchPcInfo]);
 
-  if (loading) {
-    return <Loader />;
-  }
-
   return (
     <>
       <div className="containerData">
@@ -75,7 +79,9 @@ export const ItemDetails = (props) => {
           Classroom № {props.match.params.id.slice(0, 2)} PC №{" "}
           {props.match.params.id.slice(2, 4)}
         </h4>
-        {!loading && (
+        {loading ? (
+          <Loader />
+        ) : (
           <>
             <div style={{ width: "70vw" }}>
               <Chart
