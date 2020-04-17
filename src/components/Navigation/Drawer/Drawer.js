@@ -6,7 +6,9 @@ import { NavLink } from 'react-router-dom'
 
 const links = [
     { to: '/', label: 'List', exact: true },
-    { to: '/help', label: 'Help', exact: true }
+    { to: '/clientConfig', label: 'Client Config', exact: true },
+    { to: '/help', label: 'Help', exact: true },
+    
 ]
 
 class Drawer extends Component {

@@ -66,7 +66,7 @@ export const ItemDetails = (props) => {
         data.series = newSeries;
 
         data.options.xaxis.categories = [...DataHelper.formatedTime(time)];
-
+        
         setMeanData(DataHelper.meanFunc(time, cpu, ram, allDisksFloat));
 
         setData(data);
@@ -76,6 +76,7 @@ export const ItemDetails = (props) => {
     },
     [request]
   );
+
 
   useEffect(() => {
     fetchPcInfo(setupDataChart, parseKey);

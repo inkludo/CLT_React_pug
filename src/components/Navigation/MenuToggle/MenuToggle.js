@@ -12,7 +12,7 @@ const MenuToggle = props => {
         stl.push('fa-times')
         stl.push(styles.open)
     } else {
-        stl.push('fa-bars')
+        stl.push('fas fa-bars')
     }
 
     return (

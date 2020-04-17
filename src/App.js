@@ -5,8 +5,7 @@ import { Classroom } from './containers/Classroom/Classroom';
 import { ClassroomList } from './containers/ClassroomList/ClassroomList';
 import {ItemDetails}  from './containers/ItemDetails/ItemDetails';
 import { HelpPage } from './components/HelpPage/HelpPage';
-
-
+import {ClientConfig} from './containers/ClientConfig/ClientConfig'
 
 function App() {
   return (
@@ -14,6 +13,7 @@ function App() {
       <Switch>
         <Route path='/classroom/:id/pc/:id' component={ItemDetails} />
         <Route path='/classroom/:id' component={Classroom} />
+        <Route path='/clientConfig' component={ClientConfig} />
         <Route path='/help' component={HelpPage} />
         <Route path='/' component={ClassroomList} />
       </Switch>

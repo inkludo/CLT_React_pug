@@ -17,7 +17,7 @@ export const setupDataChart = {
     {
       name: "Disk D",
       data: [],
-    }
+    },
   ],
   options: {
     chart: {
@@ -43,7 +43,6 @@ export const setupDataChart = {
 };
 
 class DataHelperClass {
-
   getData = (data, time, cpu, ram, disks) => {
     data.forEach((items) =>
       Object.keys(items).map((key) => {
@@ -73,32 +72,30 @@ class DataHelperClass {
     );
   };
 
-
   meanFunc = (time, cpu, ram, allDisksFloat) => {
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
     const meanReduce = (item) => Math.trunc(item.reduce(reducer) / item.length);
-  
+
     const timeStart = moment.unix(time[0]).format("YYYY/MM/DD HH:mm:ss");
     const timeEnd = moment
       .unix(time[time.length - 1])
       .format("YYYY/MM/DD HH:mm:ss");
     const duration = moment(timeStart).from(timeEnd, true);
-  
+
     return {
       timeStart,
       timeEnd,
       duration,
       meanCpu: meanReduce(cpu),
       meanRam: meanReduce(ram),
-      meanDisk: meanReduce(allDisksFloat) ,
+      meanDisk: meanReduce(allDisksFloat),
     };
   };
 
-
-
- formatedTime = (time) => {
+  formatedTime = (time) => {
     const format = time.map((item) => {
-      return moment.unix(item).format();
+
+      return moment.unix(Math.trunc(item)).format();
     });
     return format;
   };
@@ -112,10 +109,7 @@ class DataHelperClass {
     });
     return diskData;
   };
-
-
 }
-
 
 const DataHelper = new DataHelperClass();
 export default DataHelper;

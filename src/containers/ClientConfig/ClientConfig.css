@@ -1,0 +1,23 @@
+.formWrapper{
+    display: flex;
+    
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    background: linear-gradient(270deg, #84bcc8 0%, #59bfef 100%);
+    align-items: center;
+}
+
+form span{
+    color: red !important;
+}
+
+h1{
+    color: white;  
+}
+
+
+form label{
+    color: white;
+    font-size: 1.2rem;
+}
