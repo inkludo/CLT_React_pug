@@ -5,17 +5,18 @@ import Chart from "react-apexcharts";
 import { MeanData } from "../../components/MeanData/MeanData";
 import {
   getData,
-  someData,
   meanFunc,
   initialState,
+  formatedTime,
+  getDiskInfo
 } from "../../dataHelper/dataHelper";
 import "./ItemDetails.css";
 
 export const ItemDetails = (props) => {
-  const [data, setData] = useState(initialState);
+  const [data, setData] = useState(null);
   const [meanData, setMeanData] = useState(null);
 
-  const { request, loading } = useHttp();
+  const { request } = useHttp();
 
   const parseKey = props.match.params.id.match(/a=(\d+)n=(\d+)/);
 
@@ -25,41 +26,54 @@ export const ItemDetails = (props) => {
         const time = [];
         const cpu = [];
         const ram = [];
-        const disk = [];
+        const disks = [];
+        const diskC = [];
+        const diskD = [];
 
-        const fetched1 = await request(
+        const fetched = await request(
           `http://localhost:8000/GetComputer`,
           "POST",
-          { d: { n: parseKey[1], a: parseKey[2] } }
+          { d: { n: parseKey[2], a: parseKey[1] } }
         );
-        console.log(fetched1);
+        const dataFetch = await fetched.d.d.f;
 
-        const fetched = await { ...data };
-        getData(someData, time, cpu, ram, disk);
-        const pushNewData = fetched.series.map((item) => {
+        if (dataFetch !== undefined) {
+          getData(dataFetch, time, cpu, ram, disks);
+        } else {
+          throw new Error();
+        }
+
+        const copyData = { ...data };
+
+        getDiskInfo(disks, diskC, diskD);
+
+        copyData.series.map((item) => {
           const { name } = item;
           switch (name) {
-            case "cpu":
+            case "CPU":
               item.data = [...cpu];
               break;
-            case "ram":
+            case "RAM":
               item.data = [...ram];
               break;
-            case "disk":
-              item.data = [...disk];
+            case "Disk C":
+              item.data = [...diskC];
+              break;
+            case "Disk D":
+              item.data = [...diskD];
               break;
             default:
-              return ;
+              return;
           }
 
           return item;
         });
 
-        setMeanData(meanFunc(time, cpu, ram, disk));
+        copyData.options.xaxis.categories = [...formatedTime(time)];
 
-        fetched.series = [...pushNewData];
+        setMeanData(meanFunc(time, cpu, ram, diskC, diskD));
 
-        setData(fetched);
+        setData(copyData);
       } catch (e) {
         console.log(e);
       }
@@ -68,17 +82,16 @@ export const ItemDetails = (props) => {
   );
 
   useEffect(() => {
-    fetchPcInfo(data, parseKey);
+    fetchPcInfo(initialState, parseKey);
   }, [fetchPcInfo]);
-
 
   return (
     <>
       <div className="containerData">
-        <h4>
+        <h2>
           Classroom № {parseKey[1]} PC № {parseKey[2]}
-        </h4>
-        {loading ? (
+        </h2>
+        {!data ? (
           <Loader />
         ) : (
           <>

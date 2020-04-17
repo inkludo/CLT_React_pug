@@ -22,7 +22,7 @@ export const MeanData = ({ data }) => {
       </div>
       <div className="section-el ">
         <div className="section-el-inner">
-          Mean DISK
+          Mean Disks
           <span className="number">{data.meanDisk + "%"}</span>
         </div>
       </div>

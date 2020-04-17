@@ -1,7 +1,7 @@
 .ClassroomList {
   display: flex;
   justify-content: center;
-  padding-top: 100px;
+  padding-top: 6vh;
   flex-grow: 2;
   height: 100vh;
   background: linear-gradient(270deg, #84bcc8 0%, #59bfef 100%);
@@ -9,7 +9,7 @@
 
 .ClassroomList h1 {
   color: white;
-  margin-left: 10px;
+  text-align: center;
 }
 
 .ClassroomListWrapper {
