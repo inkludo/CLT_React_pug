@@ -1,12 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useHttp } from "../../hooks/http.hook";
+import { useToasts } from 'react-toast-notifications'
 import "./ClientConfig.css";
 
-function exeption(data) {
-  return <span style={{ color: "red" }}>{data}</span>;
-}
 const ClientConfigSchema = Yup.object().shape({
   checkStatePeriod: Yup.number()
     .positive()
@@ -25,12 +23,13 @@ const ClientConfigSchema = Yup.object().shape({
     .required("Required"),
 });
 
-//checkStatePeriod
-//sendDataPeriod
 export const ClientConfig = () => {
   const { request, loading} = useHttp();
+ 
+
   return (
     <div className="formWrapper">
+      
       <h1>Set up your Client Configuration</h1>
       <Formik
         initialValues={{
@@ -39,11 +38,17 @@ export const ClientConfig = () => {
         }}
         validationSchema={ClientConfigSchema}
         onSubmit={async (values) => {
-         return await request(
-            `http://localhost:8000/SetClientConfig`,
-            "POST",
-            {"d": {"c": `${values.checkStatePeriod}`, "s": `${values.sendDataPeriod}`}}
-          );
+          try {
+            await request(
+              `http://localhost:8000/SetClientConfig`,
+              "POST",
+              {"d": {"c": `${values.checkStatePeriod}`, "s": `${values.sendDataPeriod}`}}
+            );
+          } catch (error) {
+            console.log(error);
+          }
+       
+         
         }}
       >
         {() => (
@@ -72,7 +77,7 @@ export const ClientConfig = () => {
             <br />
 
             <button
-              disabled={!!loading}
+              disabled={loading}
               className="btn btn-primary"
               type="submit"
             >
@@ -81,6 +86,7 @@ export const ClientConfig = () => {
           </Form>
         )}
       </Formik>
+      
     </div>
   );
 };
