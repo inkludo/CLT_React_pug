@@ -33,10 +33,16 @@ export const setupDataChart = {
     xaxis: {
       type: "datetime",
       categories: [],
+      labels: {
+        datetimeUTC: false,
     },
+      
+    },
+   
+    
     tooltip: {
       x: {
-        format: "dd/MM/yy HH:mm",
+        format: "dd/MM/yy HH:mm:ss",
       },
     },
   },
@@ -95,7 +101,7 @@ class DataHelperClass {
   formatedTime = (time) => {
     const format = time.map((item) => {
 
-      return moment.unix(Math.trunc(item)).format();
+      return moment.unix(item).format("YYYY/MM/DD HH:mm:ss");
     });
     return format;
   };

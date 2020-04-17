@@ -1,7 +1,7 @@
 .Classroom {
   display: flex;
   justify-content: center;
-  padding-top: 6vh;
+  padding-top: 100px;
   flex-grow: 1;
   height: 100%;
   background: linear-gradient(270deg, #84bcc8 0%, #59bfef 100%);
@@ -9,7 +9,7 @@
 
 .Classroom h1 {
   color: white;
-  text-align: center;
+  margin-left: 0px;
 }
 
 .ClassroomWrapper {

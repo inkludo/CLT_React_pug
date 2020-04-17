@@ -40,6 +40,9 @@ export const ItemDetails = (props) => {
           throw new Error('No data!');
         }
 
+        
+        
+
         let newSeries = [
           {
             name: "CPU",
@@ -66,7 +69,7 @@ export const ItemDetails = (props) => {
         data.series = newSeries;
 
         data.options.xaxis.categories = [...DataHelper.formatedTime(time)];
-        
+        console.log(data.options.xaxis.categories);
         setMeanData(DataHelper.meanFunc(time, cpu, ram, allDisksFloat));
 
         setData(data);
