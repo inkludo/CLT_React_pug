@@ -6,6 +6,7 @@ import { MeanData } from "../../components/MeanData/MeanData";
 import { setupDataChart } from "../../dataHelper/dataHelper";
 import DataHelper from "../../dataHelper/dataHelper";
 import "./ItemDetails.css";
+import { Recommendations } from "../../components/Recommendations/Recommendations";
 
 export const ItemDetails = (props) => {
   const [data, setData] = useState(null);
@@ -105,6 +106,7 @@ export const ItemDetails = (props) => {
               />
             </div>
             <MeanData data={meanData} />
+            <Recommendations data={MeanData}/>
           </>
         )}
       </div>
