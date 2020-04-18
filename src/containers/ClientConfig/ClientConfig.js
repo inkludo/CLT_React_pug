@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useHttp } from "../../hooks/http.hook";
-import { useToasts } from 'react-toast-notifications'
 import "./ClientConfig.css";
 
 const ClientConfigSchema = Yup.object().shape({
