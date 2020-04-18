@@ -8,7 +8,6 @@ import DataHelper from "../../dataHelper/dataHelper";
 import "./ItemDetails.css";
 import { Recommendations } from "../../components/Recommendations/Recommendations";
 import ButtonBack from "../../components/UI/ButtonBack/ButtonBack";
-import { CSVLink, CSVDownload } from "react-csv";
 
 export const ItemDetails = (props) => {
   const [data, setData] = useState(null);
