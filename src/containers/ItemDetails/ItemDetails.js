@@ -7,11 +7,14 @@ import { setupDataChart } from "../../dataHelper/dataHelper";
 import DataHelper from "../../dataHelper/dataHelper";
 import "./ItemDetails.css";
 import { Recommendations } from "../../components/Recommendations/Recommendations";
+import ButtonBack from "../../components/UI/ButtonBack/ButtonBack";
+import { CSVLink, CSVDownload } from "react-csv";
 
 export const ItemDetails = (props) => {
   const [data, setData] = useState(null);
   const [meanData, setMeanData] = useState(null);
   const { request } = useHttp();
+  
 
   const parseKey = props.match.params.id.match(/a=(\d+)n=(\d+)/);
 
@@ -89,9 +92,11 @@ export const ItemDetails = (props) => {
   return (
     <>
       <div className="containerData">
-        <h2>
+      <ButtonBack url={`/classroom/${parseKey[1]}`}/>
+        <h1>
+          
           Classroom № {parseKey[1]} PC № {parseKey[2]}
-        </h2>
+        </h1>
         {!data ? (
           <Loader />
         ) : (

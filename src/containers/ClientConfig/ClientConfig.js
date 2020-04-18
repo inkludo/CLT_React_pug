@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useHttp } from "../../hooks/http.hook";
 import "./ClientConfig.css";
+import { Loader } from "../../components/Loader/Loader";
 
 const ClientConfigSchema = Yup.object().shape({
   checkStatePeriod: Yup.number()
@@ -51,7 +52,7 @@ export const ClientConfig = () => {
 
   return (
     <div className="formWrapper">
-      {clientConfig && (
+      {clientConfig ? (
         <>
           <div style={{ marginBottom: "3vh" }}>
             <h3>Your Current Client Configuration</h3>
@@ -80,7 +81,7 @@ export const ClientConfig = () => {
             <hr />
           </div>
         </>
-      )}
+      ): <Loader/>}
       <h3>Set up your Client Configuration</h3>
 
       <Formik

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useHttp } from "../../hooks/http.hook";
 import ItemsList from "../../components/ItemsList/ItemsList";
+import ButtonBack from '../../components/UI/ButtonBack/ButtonBack'
 import styles from "./Classroom.module.css";
 
 export const Classroom = (props) => {
@@ -31,9 +32,11 @@ export const Classroom = (props) => {
 
   return (
     <>
+    
       <div className={styles.Classroom}>
+        <ButtonBack url={'/'} />
           <div className={styles.ClassroomWrapper}>
-            <h1>Classroom № {props.match.params.id} </h1>
+            <h1> Classroom № {props.match.params.id} </h1>
             <ItemsList data={data} title={"PC № "} />
           </div>
       </div>
