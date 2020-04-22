@@ -13,7 +13,7 @@ export const ItemDetails = (props) => {
   const [data, setData] = useState(null);
   const [meanData, setMeanData] = useState(null);
   const { request } = useHttp();
-  
+
 
   const parseKey = props.match.params.id.match(/a=(\d+)n=(\d+)/);
 
@@ -43,8 +43,6 @@ export const ItemDetails = (props) => {
           throw new Error('No data!');
         }
 
-        
-        
 
         let newSeries = [
           {
@@ -74,7 +72,6 @@ export const ItemDetails = (props) => {
         data.options.xaxis.categories = [...DataHelper.formatedTime(time)];
         console.log(data.options.xaxis.categories);
         setMeanData(DataHelper.meanFunc(time, cpu, ram, allDisksFloat));
-
         setData(data);
       } catch (e) {
         console.log(e);
@@ -88,31 +85,36 @@ export const ItemDetails = (props) => {
     fetchPcInfo(setupDataChart, parseKey);
   }, [fetchPcInfo]);
 
+
+
+
+
   return (
     <>
       <div className="containerData">
-      <ButtonBack url={`/classroom/${parseKey[1]}`}/>
+        <ButtonBack url={`/classroom/${parseKey[1]}`} />
         <h1>
-          
+
           Classroom № {parseKey[1]} PC № {parseKey[2]}
         </h1>
         {!data ? (
           <Loader />
         ) : (
-          <>
-            <div style={{ width: "70vw" }}>
-              <Chart
-                className="chart"
-                options={data.options}
-                series={data.series}
-                type="area"
-                height={400}
-              />
-            </div>
-            <MeanData data={meanData} />
-            <Recommendations data={MeanData}/>
-          </>
-        )}
+            <>
+              <div style={{ width: "70vw" }}>
+                <Chart
+                  className="chart"
+                  options={data.options}
+                  series={data.series}
+                  type="area"
+                  height={400}
+                />
+              </div>
+              <MeanData data={meanData} />
+              {!meanData ? <Loader /> : <Recommendations data={meanData} />}
+
+            </>
+          )}
       </div>
     </>
   );
