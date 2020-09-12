@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch } from 'react-router-dom'
+import Layout from './hoc/Layout/Layout';
+import { Classroom } from './containers/Classroom/Classroom';
+import { ClassroomList } from './containers/ClassroomList/ClassroomList';
+import {ItemDetails}  from './containers/ItemDetails/ItemDetails';
+import { HelpPage } from './components/HelpPage/HelpPage';
+import {ClientConfig} from './containers/ClientConfig/ClientConfig'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Switch>
+        <Route path='/classroom/:id/pc/:id' component={ItemDetails} />
+        <Route path='/classroom/:id' component={Classroom} />
+        <Route path='/clientConfig' component={ClientConfig} />
+        <Route path='/help' component={HelpPage} />
+        <Route path='/' component={ClassroomList} />
+      </Switch>
+    </Layout>
   );
 }
+
 
 export default App;

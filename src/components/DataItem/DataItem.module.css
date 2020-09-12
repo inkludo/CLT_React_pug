@@ -1,0 +1,13 @@
+.DataItem{
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 5px 5px 5px 5px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.DataItem:hover {
+    background: rgba(255, 255, 255, .2);
+    transition: background .3s ease-in-out;
+}

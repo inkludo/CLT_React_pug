@@ -1,0 +1,12 @@
+.containerData {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  background: linear-gradient(270deg, #84bcc8 0%, #59bfef 100%);
+  align-items: center;
+}
+
+h1 {
+  color: white;
+  margin-top: 30px;
+}

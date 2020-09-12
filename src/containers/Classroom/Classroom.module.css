@@ -1,0 +1,16 @@
+.Classroom {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  height: 100%;
+  background: linear-gradient(270deg, #84bcc8 0%, #59bfef 100%);
+}
+
+.Classroom h1 {
+  color: white;
+  margin-top: 30px;
+}
+
+.ClassroomWrapper {
+  width: 600px;
+}
